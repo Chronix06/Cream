@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #24252e;
+  font-family: "Poppins", sans-serif;
+}
+
+nav {
+  padding: 20px 5%;
+  display: flex;
+  background-color: #292B36;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(247, 245, 245, 0.3) 0px 1px 3px -1px;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+}
+
+nav .logo img {
+  height: 25px;
+  margin-right: 10px;
+}
+
+nav .logo h1 {
+  font-size: 1.1rem;
+  background: linear-gradient(to right, #00ff6a 0%, #00ff80a1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.conteudo-principal {
+  padding: 20px;
+}
+
+.form-tabela-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-card {
+  flex: 1;
+  max-width: 400px;
+  background-color: #1F212A;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(48, 48, 48, 0.3);
+  color: white;
+}
+
+.form-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#salesForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  padding: 10px;
+  border: none;
+  background-color: #ffffff;
+  color: #000;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #09f77cbe;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.tabela-compras {
+  flex: 2;
+  width: 100%;
+  max-width: 800px;
+  background-color: #292B36;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.tabela-compras th,
+.tabela-compras td {
+  padding: 15px;
+  border: 1px solid #444;
+  color: white;
+  text-align: left;
+}
+
+.tabela-compras th {
+  background-color: #1F212A;
+  color: #ffffff;
+}
+
+.tabela-compras tr:nth-child(even) {
+  background-color: #333;
+}
+
+/*Para deixar o Site Responsivo*/
+@media (max-width: 768px) {
+  .form-tabela-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-card,
+  .tabela-compras {
+    max-width: 100%;
+  }
+}
+/*==============================*/

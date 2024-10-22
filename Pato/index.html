@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SmartVendas</title>
+    <link rel="stylesheet" href="/tela.fornecedor/style.css" />
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #24252e;
+      font-family: "Poppins", sans-serif;
+      font-size: 80%; /* Redução de 20% */
+    }
+
+    nav {
+      padding: 16px 4%; /* 20% menor */
+      display: flex;
+      background-color: #292B36;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(247, 245, 245, 0.3) 0px 1px 3px -1px;
+    }
+
+    nav .logo img {
+      height: 20px; /* Redução proporcional */
+      margin-right: 8px;
+    }
+
+    nav .logo h1 {
+      font-size: 0.9rem;
+      background: linear-gradient(to right, #00ff6a 0%, #00ff80a1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 1.2rem; /* Redução */
+    }
+
+    nav ul li a {
+      font-size: 90%; /* Redução */
+      padding: 3px 6px; /* Redução */
+    }
+
+    .conteudo-principal {
+      padding: 16px; /* Redução */
+    }
+
+    .form-tabela-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 960px; /* 20% menor */
+      margin: 0 auto;
+    }
+
+    .form-card {
+      flex: 1;
+      max-width: 320px; /* Redução */
+      background-color: #1F212A;
+      padding: 24px; /* Redução */
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(48, 48, 48, 0.3);
+      color: white;
+    }
+
+    .form-card h2 {
+      margin-bottom: 16px; /* Redução */
+      text-align: center;
+    }
+
+    #salesForm {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    input {
+      padding: 8px; /* Redução */
+      font-size: 0.9rem;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px; /* Redução */
+      border-radius: 4px;
+    }
+
+    .tabela-compras {
+      flex: 2;
+      max-width: 640px; /* Redução */
+      background-color: #292B36;
+      border-radius: 6px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .tabela-compras th, .tabela-compras td {
+      padding: 12px; /* Redução */
+    }
+
+    @media (max-width: 768px) {
+      .form-tabela-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form-card, .tabela-compras {
+        max-width: 100%;
+      }
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="/img/logo.png" alt="logo" />
+        <h1>SmartVendas</h1>
+      </div>
+      <ul>
+        <li><a href="/tela.inicio/index.html">Ínicio</a></li>
+        <li><a href="#">Caixa</a></li>
+        <li><a href="/tela.produto/index.html">Produtos</a></li>
+        <li><a href="#">Vendas</a></li>
+        <li><a href="/tela.usuario/index.html">Usuários</a></li>
+        <li><a href="/tela.compra/index.html">Compras</a></li>
+        <li><a href="/tela.fornecedor/index.html">Fornecedor</a></li>
+      </ul>
+    </nav>
+
+    <main class="conteudo-principal" role="main">
+      <div class="form-tabela-container">
+        <div class="form-card">
+          <h2>Cadastro de Fornecedor</h2>
+          <form id="salesForm">
+            <label for="nome-fornecedor">Nome:</label>
+            <input type="text" id="nome-fornecedor" name="nome-fornecedor" required />
+
+            <label for="cnpj-fornecedor">CNPJ:</label>
+            <input type="number" id="cnpj-fornecedor" name="cnpj-fornecedor" required />
+
+            <label for="email-fornecedor">Email:</label>
+            <input type="email" id="email-fornecedor" name="email-fornecedor" required />
+
+            <label for="telefone-unitario">Telefone:</label>
+            <input type="tel" id="telefone-unitario" name="telefone-unitario" required />
+
+            <label for="endereco-fornecedor">Endereço:</label>
+            <input type="text" id="endereco-fornecedor" name="endereco-fornecedor" required />
+
+            <button type="submit">Cadastrar</button>
+          </form>
+        </div>
+
+        <table class="tabela-compras" id="purchaseTable">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>CNPJ</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Endereço</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById('salesForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const nomeFornecedor = document.getElementById('nome-fornecedor').value.trim();
+        const cnpjFornecedor = document.getElementById('cnpj-fornecedor').value.trim();
+        const emailFornecedor = document.getElementById('email-fornecedor').value.trim();
+        const telefoneFornecedor = document.getElementById('telefone-unitario').value.trim();
+        const enderecoFornecedor = document.getElementById('endereco-fornecedor').value.trim();
+
+        if (!nomeFornecedor || !cnpjFornecedor || !emailFornecedor || !telefoneFornecedor || !enderecoFornecedor) {
+          alert("Por favor, preencha todos os campos!");
+          return;
+        }
+
+        const tabela = document.getElementById('purchaseTable').getElementsByTagName('tbody')[0];
+        const novaLinha = tabela.insertRow();
+
+        novaLinha.insertCell(0).textContent = nomeFornecedor;
+        novaLinha.insertCell(1).textContent = cnpjFornecedor;
+        novaLinha.insertCell(2).textContent = emailFornecedor;
+        novaLinha.insertCell(3).textContent = telefoneFornecedor;
+        novaLinha.insertCell(4).textContent = enderecoFornecedor;
+
+        this.reset();
+        alert("Fornecedor adicionado com sucesso!");
+      });
+    </script>
+  </body>
+</html>

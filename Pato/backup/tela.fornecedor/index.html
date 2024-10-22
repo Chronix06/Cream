@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SmartVendas</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  </head>
+ 
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="/img/logo.png" alt="logo" />
+        <h1>SmartVendas</h1>
+      </div>
+      <ul>
+        <li><a href="/tela.inicio/index.html">Ínicio</a></li>
+        <li><a href="#">Caixa</a></li>
+        <li><a href="/tela.produto/index.html">Produtos</a></li>
+        <li><a href="#">Vendas</a></li>
+        <li><a href="/tela.usuario/index.html">Usuários</a></li>
+        <li><a href="/tela.compra/index.html">Compras</a></li>
+        <li><a href="/tela.fornecedor/index.html">Fornecedor</a></li>
+      </ul>
+    </nav>
+
+    <main class="conteudo-principal" role="main">
+      <div class="form-tabela-container">
+        <div class="form-card">
+          <h2>Cadastro de Fornecedor</h2>
+          <form id="salesForm">
+            <label for="nome-fornecedor">Nome:</label>
+            <input type="text" id="nome-fornecedor" name="nome-fornecedor" placeholder="" required />
+<!-- 
+            <label for="codigo-fornecedor">Código:</label>
+            <input type="number" id="codigo-fornecedor" name="codigo-fornecedor" placeholder="" required /> -->
+
+            <label for="cnpj-fornecedor">CNPJ:</label>
+            <input type="text" id="cnpj-fornecedor" name="cnpj-fornecedor" placeholder="" min="15" required />
+
+            <label for="email-fornecedor">Email:</label>
+            <input type="email" id="email-fornecedor" name="email-fornecedor" placeholder="" required />
+
+            <label for="telefone-unitario">Telefone:</label>
+            <input type="text" id="telefone-unitario" name="telefone-unitario" placeholder="" required />
+
+            <label for="endereco-fornecedor">Endereço:</label>
+            <input type="text" id="endereco-fornecedor" name="endereco-fornecedor" placeholder="" required />
+
+            <button type="submit">Cadastrar</button>
+          </form>
+        </div>
+
+        <table class="tabela-compras" id="purchaseTable">
+          <thead>
+            <tr>
+              <!-- <th>Código</th> -->
+              <th>Nome</th>
+              <th>CNPJ</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Endereço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- As compras adicionadas aparecerão aqui -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      document.getElementById('salesForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio do formulário
+  
+    // Captura os dados do formulário
+    const nomeFornecedor = document.getElementById('nome-fornecedor').value.trim();
+    // const codigoFornecedor = document.getElementById('codigo-fornecedor').value.trim();
+    const cnpjFornecedor = document.getElementById('cnpj-fornecedor').value.trim();
+    const emailFornecedor = document.getElementById('email-fornecedor').value.trim();
+    const telefoneFornecedor = document.getElementById('telefone-unitario').value.trim();
+    const enderecoFornecedor = document.getElementById('endereco-fornecedor').value.trim();
+  
+    // Verifica se todos os campos estão preenchidos
+    if (!nomeFornecedor ||/*!codigoFornecedor||*/ !cnpjFornecedor || !emailFornecedor || !telefoneFornecedor || !enderecoFornecedor) {
+      alert("Por favor, preencha todos os campos!");
+      return;
+    }
+  
+    // // Verifica se o valor unitário é um número válido
+    // if (isNaN(valorUnitario) || valorUnitario <= 0) {
+    //   alert("Por favor, insira um valor unitário válido!");
+    //   return;
+    // }
+  
+    // Cria uma nova linha na tabela
+    const tabela = document.getElementById('purchaseTable').getElementsByTagName('tbody')[0];
+    const novaLinha = tabela.insertRow();
+  
+    // Insere os dados nas células da nova linha
+    // novaLinha.insertCell(0).textContent = codigoFornecedor;
+    novaLinha.insertCell(0).textContent = nomeFornecedor;
+    novaLinha.insertCell(1).textContent = cnpjFornecedor;
+    novaLinha.insertCell(2).textContent = emailFornecedor;
+    novaLinha.insertCell(3).textContent = telefoneFornecedor;
+    novaLinha.insertCell(4).textContent = enderecoFornecedor;
+  
+    // Limpa o formulário após a adição
+    this.reset();
+  
+    // Feedback visual
+    alert("Fornecedor adicionado com sucesso!");
+  });
+  
+    </script>
+    <script src="script.js"></script>
+    
+  </body>
+</html>
